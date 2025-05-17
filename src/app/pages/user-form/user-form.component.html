@@ -1,131 +1,182 @@
-<div>
-  <div class="center">
-    <h2>User Form</h2>
+<div class="form-container">
+  <div class="form-header">
+    <h4>User Form</h4>
   </div>
-  <form [formGroup]="userForm"  nz-form [nzLayout]="'vertical'">
-    <div>
-      <h3 class="center">Main</h3>
-      <div>
-        <nz-form-item >
-          <nz-form-label nzRequired>Name</nz-form-label>
-          <nz-form-control nzSpan="4"  [nzErrorTip]="'Name is required (3–16 chars)'" >
-            <input nz-input formControlName="name" />
-          </nz-form-control>
-        </nz-form-item>
 
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()"    nz-form [nzLayout]="'vertical'" class="user-form">
+    <nz-row [nzGutter]="16">
+      <nz-col [nzSpan]="24">
+        <h3 class="section-title">Main Information</h3>
+      </nz-col>
+
+      <nz-col [nzSpan]="4">
+        <nz-form-item>
+          <nz-form-label nzRequired>Name</nz-form-label>
+          <input nz-input formControlName="name" placeholder="Enter name" />
+          <div *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('name')?.errors?.['required']">Name is required</div>
+            <div *ngIf="userForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters</div>
+            <div *ngIf="userForm.get('name')?.errors?.['maxlength']">Name must be maximum 16 characters</div>
+          </div>
+        </nz-form-item>
+      </nz-col>
+
+      <nz-col [nzSpan]="6">
         <nz-form-item>
           <nz-form-label nzRequired>Username</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Username is required (3–16 chars)'">
-            <input nz-input formControlName="username" />
-          </nz-form-control>
+          <input nz-input formControlName="username" placeholder="Enter username" />
+          <div *ngIf="userForm.get('username')?.touched && userForm.get('username')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('username')?.errors?.['required']">Username is required</div>
+            <div *ngIf="userForm.get('username')?.errors?.['minlength']">Minimum 3 characters</div>
+            <div *ngIf="userForm.get('username')?.errors?.['maxlength']">Maximum 16 characters</div>
+          </div>
         </nz-form-item>
+      </nz-col>
 
+      <nz-col [nzSpan]="4">
         <nz-form-item>
           <nz-form-label nzRequired>Email</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Invalid email'">
-            <input nz-input formControlName="email" />
-          </nz-form-control>
+          <input nz-input formControlName="email" placeholder="Enter email" />
+          <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('email')?.errors?.['required']">Email is required</div>
+            <div *ngIf="userForm.get('email')?.errors?.['email']">Invalid email format</div>
+          </div>
         </nz-form-item>
+      </nz-col>
 
+      <nz-col [nzSpan]="4">
         <nz-form-item>
           <nz-form-label nzRequired>Phone</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Phone is required (max 16 symbols)'">
-            <input nz-input formControlName="phone" />
-          </nz-form-control>
+          <input nz-input formControlName="phone" placeholder="Enter phone" />
+          <div *ngIf="userForm.get('phone')?.touched && userForm.get('phone')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('phone')?.errors?.['required']">Phone is required</div>
+            <div *ngIf="userForm.get('phone')?.errors?.['maxlength']">Maximum 16 characters</div>
+          </div>
         </nz-form-item>
+      </nz-col>
 
-
+      <nz-col [nzSpan]="5">
         <nz-form-item>
           <nz-form-label nzRequired>Website</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Website is required'">
-            <input nz-input formControlName="website" />
-          </nz-form-control>
+          <input nz-input formControlName="website" placeholder="Enter website" />
+          <div *ngIf="userForm.get('website')?.touched && userForm.get('website')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('website')?.errors?.['required']">Website is required</div>
+          </div>
         </nz-form-item>
-      </div>
-    </div>
-    <div>
-      <h3 class="center">
-        Address:
-      </h3>
-      <div>
+      </nz-col>
+    </nz-row>
+
+    <nz-row [nzGutter]="16">
+      <nz-col [nzSpan]="24">
+        <h3 class="section-title">Address</h3>
+      </nz-col>
+
+      <nz-col [nzSpan]="6">
         <nz-form-item>
           <nz-form-label nzRequired>Street</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Street is required'">
-            <input nz-input formControlName="street" />
-          </nz-form-control>
+          <input nz-input formControlName="street" placeholder="Enter street" />
+          <div *ngIf="userForm.get('street')?.touched && userForm.get('street')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('street')?.errors?.['required']">Street is required</div>
+          </div>
         </nz-form-item>
+      </nz-col>
 
+      <nz-col [nzSpan]="6">
         <nz-form-item>
           <nz-form-label nzRequired>Suite</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Suite is required'">
-            <input nz-input formControlName="suite" />
-          </nz-form-control>
+          <input nz-input formControlName="suite" placeholder="Enter suite" />
+          <div *ngIf="userForm.get('suite')?.touched && userForm.get('suite')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('suite')?.errors?.['required']">Suite is required</div>
+          </div>
         </nz-form-item>
+      </nz-col>
 
+      <nz-col [nzSpan]="6">
         <nz-form-item>
           <nz-form-label nzRequired>City</nz-form-label>
-          <nz-form-control [nzErrorTip]="'City is required'">
-            <input nz-input formControlName="city" />
-          </nz-form-control>
+          <input nz-input formControlName="city" placeholder="Enter city" />
+          <div *ngIf="userForm.get('city')?.touched && userForm.get('city')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('city')?.errors?.['required']">City is required</div>
+          </div>
         </nz-form-item>
+      </nz-col>
 
+      <nz-col [nzSpan]="6">
         <nz-form-item>
           <nz-form-label nzRequired>Zipcode</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Zipcode is required'">
-            <input nz-input formControlName="zipcode" />
-          </nz-form-control>
+          <input nz-input formControlName="zipcode" placeholder="Enter zipcode" />
+          <div *ngIf="userForm.get('zipcode')?.touched && userForm.get('zipcode')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('zipcode')?.errors?.['required']">Zipcode is required</div>
+          </div>
         </nz-form-item>
-      </div>
-    </div>
-    <div>
-      <h3 class="center">Geolocation:</h3>
-      <div>
+      </nz-col>
+    </nz-row>
+
+    <nz-row [nzGutter]="16">
+      <nz-col [nzSpan]="24">
+        <h3 class="section-title">Geolocation</h3>
+      </nz-col>
+
+      <nz-col [nzSpan]="12">
         <nz-form-item>
           <nz-form-label nzRequired>Latitude</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Latitude is required'">
-            <input nz-input formControlName="lat" />
-          </nz-form-control>
+          <input nz-input formControlName="lat" placeholder="Enter latitude" />
+          <div *ngIf="userForm.get('lat')?.touched && userForm.get('lat')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('lat')?.errors?.['required']">Latitude is required</div>
+          </div>
         </nz-form-item>
+      </nz-col>
 
+      <nz-col [nzSpan]="12">
         <nz-form-item>
           <nz-form-label nzRequired>Longitude</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Longitude is required'">
-            <input nz-input formControlName="lng" />
-          </nz-form-control>
+          <input nz-input formControlName="lng" placeholder="Enter longitude" />
+          <div *ngIf="userForm.get('lng')?.touched && userForm.get('lng')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('lng')?.errors?.['required']">Longitude is required</div>
+          </div>
         </nz-form-item>
-      </div>
-    </div>
+      </nz-col>
+    </nz-row>
 
-    <div>
-      <h3 class="center">
-        User Company:
-      </h3>
-      <div>
+    <nz-row [nzGutter]="16">
+      <nz-col [nzSpan]="24">
+        <h3 class="section-title">Company Information</h3>
+      </nz-col>
+
+      <nz-col [nzSpan]="8">
         <nz-form-item>
           <nz-form-label nzRequired>Company Name</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Company Name is required'">
-            <input nz-input formControlName="companyName" />
-          </nz-form-control>
+          <input nz-input formControlName="companyName" placeholder="Enter company name" />
+          <div *ngIf="userForm.get('companyName')?.touched && userForm.get('companyName')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('companyName')?.errors?.['required']">Company name is required</div>
+          </div>
         </nz-form-item>
+      </nz-col>
 
+      <nz-col [nzSpan]="8">
         <nz-form-item>
           <nz-form-label nzRequired>Catch Phrase</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Catch Phrase is required'">
-            <input nz-input formControlName="catchPhrase" />
-          </nz-form-control>
+          <input nz-input formControlName="catchPhrase" placeholder="Enter catch phrase" />
+          <div *ngIf="userForm.get('catchPhrase')?.touched && userForm.get('catchPhrase')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('catchPhrase')?.errors?.['required']">Catch phrase is required</div>
+          </div>
         </nz-form-item>
+      </nz-col>
 
+      <nz-col [nzSpan]="8">
         <nz-form-item>
           <nz-form-label nzRequired>BS</nz-form-label>
-          <nz-form-control [nzErrorTip]="'BS is required'">
-            <input nz-input formControlName="bs" />
-          </nz-form-control>
+          <input nz-input formControlName="bs" placeholder="Enter BS" />
+          <div *ngIf="userForm.get('bs')?.touched && userForm.get('bs')?.invalid" class="text-danger mt-1">
+            <div *ngIf="userForm.get('bs')?.errors?.['required']">BS is required</div>
+          </div>
         </nz-form-item>
-      </div>
+      </nz-col>
+    </nz-row>
+
+    <div class="form-actions">
+      <button nz-button nzType="primary" [disabled]="userForm.invalid">Submit</button>
     </div>
-
-
-    <button nz-button nzSize="small" nzType="primary" [disabled]="userForm.invalid">Submit</button>
   </form>
 </div>
 
