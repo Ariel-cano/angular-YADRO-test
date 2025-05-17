@@ -1,1 +1,132 @@
-<p>user-form works!</p>
+<div>
+  <div class="center">
+    <h2>User Form</h2>
+  </div>
+  <form [formGroup]="userForm"  nz-form [nzLayout]="'vertical'">
+    <div>
+      <h3 class="center">Main</h3>
+      <div>
+        <nz-form-item >
+          <nz-form-label nzRequired>Name</nz-form-label>
+          <nz-form-control nzSpan="4"  [nzErrorTip]="'Name is required (3–16 chars)'" >
+            <input nz-input formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired>Username</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Username is required (3–16 chars)'">
+            <input nz-input formControlName="username" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired>Email</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Invalid email'">
+            <input nz-input formControlName="email" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired>Phone</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Phone is required (max 16 symbols)'">
+            <input nz-input formControlName="phone" />
+          </nz-form-control>
+        </nz-form-item>
+
+
+        <nz-form-item>
+          <nz-form-label nzRequired>Website</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Website is required'">
+            <input nz-input formControlName="website" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div>
+      <h3 class="center">
+        Address:
+      </h3>
+      <div>
+        <nz-form-item>
+          <nz-form-label nzRequired>Street</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Street is required'">
+            <input nz-input formControlName="street" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired>Suite</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Suite is required'">
+            <input nz-input formControlName="suite" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired>City</nz-form-label>
+          <nz-form-control [nzErrorTip]="'City is required'">
+            <input nz-input formControlName="city" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired>Zipcode</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Zipcode is required'">
+            <input nz-input formControlName="zipcode" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div>
+      <h3 class="center">Geolocation:</h3>
+      <div>
+        <nz-form-item>
+          <nz-form-label nzRequired>Latitude</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Latitude is required'">
+            <input nz-input formControlName="lat" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired>Longitude</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Longitude is required'">
+            <input nz-input formControlName="lng" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="center">
+        User Company:
+      </h3>
+      <div>
+        <nz-form-item>
+          <nz-form-label nzRequired>Company Name</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Company Name is required'">
+            <input nz-input formControlName="companyName" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired>Catch Phrase</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Catch Phrase is required'">
+            <input nz-input formControlName="catchPhrase" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired>BS</nz-form-label>
+          <nz-form-control [nzErrorTip]="'BS is required'">
+            <input nz-input formControlName="bs" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+
+    <button nz-button nzSize="small" nzType="primary" [disabled]="userForm.invalid">Submit</button>
+  </form>
+</div>
+
+
