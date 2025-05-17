@@ -1,4 +1,10 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+.angular/
+.vscode/
+public/
+dist/
+node_modules/
+.idea/
+
 
 # Compiled output
 /dist
@@ -12,7 +18,7 @@ npm-debug.log
 yarn-error.log
 
 # IDEs and editors
-.idea/
+
 .project
 .classpath
 .c9/
