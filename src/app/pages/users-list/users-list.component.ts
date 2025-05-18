@@ -7,6 +7,7 @@ import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzPaginationModule} from 'ng-zorro-antd/pagination';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {NzButtonComponent} from 'ng-zorro-antd/button';
 
 
 @Component({
@@ -16,7 +17,8 @@ import {CommonModule} from '@angular/common';
     FormsModule,
     NzCardModule,
     NzInputModule,
-    NzPaginationModule
+    NzPaginationModule,
+    NzButtonComponent
   ],
   templateUrl: './users-list.component.html',
   standalone: true,

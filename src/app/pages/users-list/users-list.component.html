@@ -15,7 +15,13 @@
       *ngFor="let user of getCurrentPageUsers()"
       class="user-card"
       [nzTitle]="user.name">
-      <p class="user-email">{{ user.email }}</p>
+      <div class="button-container">
+        <p class="user-email">{{ user.email }}</p>
+        <div>
+          <button class="button" nz-button >Edit</button>
+          <button class="button" nz-button >Delete</button>
+        </div>
+      </div>
     </nz-card>
   </div>
 
