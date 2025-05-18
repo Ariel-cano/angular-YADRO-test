@@ -18,7 +18,7 @@
       <div class="button-container">
         <p class="user-email">{{ user.email }}</p>
         <div>
-          <button class="button" nz-button >Edit</button>
+          <button class="button" nz-button (click)="onEdit(user)" >Edit</button>
           <button class="button" nz-button >Delete</button>
         </div>
       </div>

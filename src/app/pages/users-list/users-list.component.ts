@@ -8,7 +8,7 @@ import {NzPaginationModule} from 'ng-zorro-antd/pagination';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {NzButtonComponent} from 'ng-zorro-antd/button';
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -28,10 +28,10 @@ export class UsersListComponent implements OnInit, OnDestroy {
   users: IUser[] = [];
   filteredUsers: IUser[] = [];
   userSrc = inject(UserService);
+  private router = inject(Router);
   private subscriptions: Subscription[] = [];
   searchTerm: string = '';
   searchTerms: Subject<string> = new Subject<string>();
-
 
   pageSize: number = 4;
   currentPage: number = 1;
@@ -88,6 +88,10 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   onSearch(term: string) {
     this.searchTerms.next(term);
+  }
+
+  onEdit(user: IUser) {
+    this.router.navigate(['/users', user.id, 'edit']);
   }
 
   onPageIndexChange(page: number): void {

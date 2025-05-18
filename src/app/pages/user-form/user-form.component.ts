@@ -1,12 +1,13 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
-import {NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent} from 'ng-zorro-antd/form';
+import {NzFormDirective, NzFormItemComponent, NzFormLabelComponent} from 'ng-zorro-antd/form';
 import {NzInputDirective} from 'ng-zorro-antd/input';
 import {NzButtonComponent} from 'ng-zorro-antd/button';
 import {NzColDirective, NzRowDirective} from 'ng-zorro-antd/grid';
 import {NgIf} from '@angular/common';
 import {IUser} from '../../model/user.model';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -25,9 +26,12 @@ import {IUser} from '../../model/user.model';
   standalone: true,
   styleUrl: './user-form.component.scss'
 })
-export class UserFormComponent {
+export class UserFormComponent implements OnInit{
   userForm: FormGroup = new FormGroup({});
   userSrc = inject(UserService)
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  isEditMode: boolean = false;
 
   constructor() {
     this.initializeForm();
@@ -54,18 +58,113 @@ export class UserFormComponent {
       bs: new FormControl('', [Validators.required]),
     })
   }
+  ngOnInit(): void {
+    this.checkEditMode();
+  }
+
+
+  private checkEditMode(): void {
+    const userId = this.route.snapshot.params['id'];
+    if (userId){
+      this.isEditMode = true;
+      this.loadUserData(+userId)
+    }
+  }
+
+  private loadUserData(userId: number): void {
+    this.userSrc.getUserDetailsById(userId).subscribe({
+      next: (user: IUser) => {
+        this.patchFormWithUserData(user);
+      },
+      error: (err) => {
+        alert(`Error loading user: ${err}`);
+      }
+    })
+  }
+
+  private patchFormWithUserData(user: IUser): void {
+    this.userForm.patchValue({
+      id: user.id,
+      name: user.name,
+      username: user.username,
+      email: user.email,
+      phone: user.phone,
+      website: user.website,
+      street: user.address.street,
+      suite: user.address.suite,
+      city: user.address.city,
+      zipcode: user.address.zipcode,
+      lat: user.address.geo.lat,
+      lng: user.address.geo.lng,
+      companyName: user.company.name,
+      catchPhrase: user.company.catchPhrase,
+      bs: user.company.bs
+    })
+  }
+
+  private prepareUserData(): IUser {
+    const formValue = this.userForm.value;
+    return {
+      ...formValue,
+      address: {
+        street: formValue.street,
+        suite: formValue.suite,
+        city: formValue.city,
+        zipcode: formValue.zipcode,
+        geo: {
+          lat: formValue.lat,
+          lng: formValue.lng
+        }
+      },
+      company: {
+        name: formValue.companyName,
+        catchPhrase: formValue.catchPhrase,
+        bs: formValue.bs
+      }
+    };
+  }
+
 
 
   onSubmit(): void {
-    const  userFormValue = this.userForm.value;
-    this.userSrc.createUser(userFormValue).subscribe({
+
+    const userData = this.prepareUserData();
+
+    if (this.isEditMode) {
+      this.updateUser(userData);
+    } else {
+      this.createUser(userData);
+    }
+  }
+
+  private updateUser(userData: IUser): void {
+    this.userSrc.updateUser(userData, userData.id).subscribe({
       next: (res: IUser) => {
-        alert(`User ${res.name} create successfully!`);
+        alert(`User ${res.name} updated successfully!`);
+        this.router.navigate(['/users']);
       },
       error: (err) => {
-        console.error('Error by create user:', err);
-        alert('Failed to create a user. Try again later.');
+        console.error('Error updating user:', err);
+        alert('Failed to update user. Try again later.');
       }
     });
   }
+
+  private createUser(userData: IUser): void {
+    this.userSrc.createUser(userData).subscribe({
+      next: (res: IUser) => {
+        alert(`User ${res.name} created successfully!`);
+        this.router.navigate(['/users']);
+      },
+      error: (err) => {
+        console.error('Error creating user:', err);
+        alert('Failed to create user. Try again later.');
+      }
+    });
+  }
+
+
+
+
+
 }
