@@ -1,1 +1,31 @@
-<p>users-list works!</p>
+<div class="users-container">
+  <div class="search-container">
+    <nz-input-group nzPrefixIcon="search">
+      <input
+        nz-input
+        placeholder="users search..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearch($event)"
+      />
+    </nz-input-group>
+  </div>
+
+  <div class="users-grid">
+    <nz-card
+      *ngFor="let user of getCurrentPageUsers()"
+      class="user-card"
+      [nzTitle]="user.name">
+      <p class="user-email">{{ user.email }}</p>
+    </nz-card>
+  </div>
+
+  <div class="pagination-container">
+    <nz-pagination
+      [nzPageIndex]="currentPage"
+      [nzPageSize]="pageSize"
+      [nzTotal]="totalItems"
+      (nzPageIndexChange)="onPageIndexChange($event)"
+      nzShowSizeChanger="false"
+    ></nz-pagination>
+  </div>
+</div>

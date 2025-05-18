@@ -2,23 +2,38 @@ import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {IUser} from '../../model/user.model';
 import {UserService} from '../../services/user.service';
 import {debounceTime, distinctUntilChanged, Subject, Subscription, switchMap} from 'rxjs';
-import * as console from 'node:console';
+import {NzCardModule} from 'ng-zorro-antd/card';
+import {NzInputModule} from 'ng-zorro-antd/input';
+import {NzPaginationModule} from 'ng-zorro-antd/pagination';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+
 
 @Component({
   selector: 'app-users-list',
-  imports: [],
+  imports: [
+    CommonModule,
+    FormsModule,
+    NzCardModule,
+    NzInputModule,
+    NzPaginationModule
+  ],
   templateUrl: './users-list.component.html',
   standalone: true,
   styleUrl: './users-list.component.scss'
 })
-export class UsersListComponent implements OnInit , OnDestroy {
-  users : IUser[] = [];
+export class UsersListComponent implements OnInit, OnDestroy {
+  users: IUser[] = [];
   filteredUsers: IUser[] = [];
   userSrc = inject(UserService);
   private subscriptions: Subscription[] = [];
   searchTerm: string = '';
   searchTerms: Subject<string> = new Subject<string>();
 
+
+  pageSize: number = 4;
+  currentPage: number = 1;
+  totalItems: number = 0;
 
   ngOnInit() {
     this.loadUsers();
@@ -43,7 +58,6 @@ export class UsersListComponent implements OnInit , OnDestroy {
     this.subscriptions.push(searchSubscription);
   }
 
-
   loadUsers() {
     const loadSubscription = this.userSrc.getAllUsers().subscribe({
       next: users => {
@@ -67,20 +81,23 @@ export class UsersListComponent implements OnInit , OnDestroy {
         user.email.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     }
+    this.totalItems = this.filteredUsers.length;
   }
 
   onSearch(term: string) {
     this.searchTerms.next(term);
   }
 
+  onPageIndexChange(page: number): void {
+    this.currentPage = page;
+  }
 
+  getCurrentPageUsers(): IUser[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    return this.filteredUsers.slice(startIndex, startIndex + this.pageSize);
+  }
 
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
-
-
-
-
-
 }
