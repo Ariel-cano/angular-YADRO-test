@@ -121,4 +121,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
+
+  goToUserDetails(id: number) {
+    this.router.navigate([`/users`, id]);
+  }
 }
