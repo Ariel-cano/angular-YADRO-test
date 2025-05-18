@@ -42,8 +42,8 @@ export class UserFormComponent implements OnInit{
   initializeForm(): void {
     this.userForm = new FormGroup({
       id: new FormControl(Math.floor(Math.random() * 1000)),
-      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
-      username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       street: new FormControl('', [Validators.required]),
       suite: new FormControl('', [Validators.required]),
@@ -51,7 +51,7 @@ export class UserFormComponent implements OnInit{
       zipcode: new FormControl('', [Validators.required]),
       lat: new FormControl('', [Validators.required]),
       lng: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.maxLength(16)]),
+      phone: new FormControl('', [Validators.required]),
       website: new FormControl('', [Validators.required]),
       companyName: new FormControl('', [Validators.required]),
       catchPhrase: new FormControl('', [Validators.required]),

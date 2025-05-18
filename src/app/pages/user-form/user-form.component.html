@@ -16,7 +16,6 @@
           <div *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid" class="text-danger mt-1">
             <div *ngIf="userForm.get('name')?.errors?.['required']">Name is required</div>
             <div *ngIf="userForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters</div>
-            <div *ngIf="userForm.get('name')?.errors?.['maxlength']">Name must be maximum 16 characters</div>
           </div>
         </nz-form-item>
       </nz-col>
@@ -28,7 +27,6 @@
           <div *ngIf="userForm.get('username')?.touched && userForm.get('username')?.invalid" class="text-danger mt-1">
             <div *ngIf="userForm.get('username')?.errors?.['required']">Username is required</div>
             <div *ngIf="userForm.get('username')?.errors?.['minlength']">Minimum 3 characters</div>
-            <div *ngIf="userForm.get('username')?.errors?.['maxlength']">Maximum 16 characters</div>
           </div>
         </nz-form-item>
       </nz-col>
@@ -50,7 +48,6 @@
           <input nz-input formControlName="phone" placeholder="Enter phone" />
           <div *ngIf="userForm.get('phone')?.touched && userForm.get('phone')?.invalid" class="text-danger mt-1">
             <div *ngIf="userForm.get('phone')?.errors?.['required']">Phone is required</div>
-            <div *ngIf="userForm.get('phone')?.errors?.['maxlength']">Maximum 16 characters</div>
           </div>
         </nz-form-item>
       </nz-col>
