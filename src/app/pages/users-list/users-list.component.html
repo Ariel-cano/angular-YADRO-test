@@ -19,7 +19,7 @@
         <p class="user-email">{{ user.email }}</p>
         <div>
           <button class="button" nz-button (click)="onEdit(user)" >Edit</button>
-          <button class="button" nz-button >Delete</button>
+          <button class="button" nz-button (click)="onDelete(user.id)" >Delete</button>
         </div>
       </div>
     </nz-card>

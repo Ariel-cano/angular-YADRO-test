@@ -94,6 +94,21 @@ export class UsersListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/users', user.id, 'edit']);
   }
 
+  onDelete(id: number) {
+    const IsDelete = confirm('are you sure you want to delete this user?')
+    if (IsDelete) {
+      this.userSrc.deleteUser(id).subscribe({
+        next: () => {
+          this.users = this.users.filter(user => user.id !== id);
+          this.filterUsers();
+        },
+        error: error => {
+          console.error('Error deleting user:', error);
+        }
+      });
+    }
+  }
+
   onPageIndexChange(page: number): void {
     this.currentPage = page;
   }
