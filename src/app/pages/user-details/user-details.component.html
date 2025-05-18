@@ -1,1 +1,37 @@
-<p>user-details works!</p>
+<div class="container" *ngIf="user">
+  <nz-card [nzTitle]="user.name">
+    <div class="user-header">
+      <nz-avatar class="avatar-size" [nzText]="user.name.charAt(0)"></nz-avatar>
+      <div class="user-info">
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <p><strong>Website:</strong> {{ user.website }}</p>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3>Address</h3>
+      <div class="info-list">
+        <div class="info-item"><span>City:</span> {{ user.address.city }}</div>
+        <div class="info-item"><span>Street:</span> {{ user.address.street }}</div>
+        <div class="info-item"><span>Suite:</span> {{ user.address.suite }}</div>
+        <div class="info-item"><span>Zipcode:</span> {{ user.address.zipcode }}</div>
+        <div class="info-item"><span>Coordinates:</span> lat: {{ user.address.geo.lat }}, lng: {{ user.address.geo.lng }}</div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3>Company</h3>
+      <div class="info-list">
+        <div class="info-item"><span>Name:</span> {{ user.company.name }}</div>
+        <div class="info-item"><span>Catch Phrase:</span> {{ user.company.catchPhrase }}</div>
+        <div class="info-item"><span>Business:</span> {{ user.company.bs }}</div>
+      </div>
+    </div>
+
+    <button nz-button nzType="primary" (click)="back()">
+      Back
+    </button>
+  </nz-card>
+</div>

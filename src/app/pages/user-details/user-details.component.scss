@@ -1,0 +1,113 @@
+.container {
+  padding: 4px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+::ng-deep .ant-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .ant-card-head {
+    border-bottom: 2px solid #f0f0f0;
+    background: linear-gradient(90deg, #1890ff 0%, #096dd9 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 2px 12px;
+
+    .ant-card-head-title {
+      font-size: 12px;
+      font-weight: 200;
+    }
+  }
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 14px;
+  padding: 8px;
+  background: rgba(24, 144, 255, 0.05);
+  border-radius: 8px;
+}
+
+.user-info {
+  p {
+    margin: 4px 0;
+    font-size: 10px;
+    color: #262626;
+  }
+}
+
+.avatar-size {
+  height: 60px;
+  width: 60px;
+
+  ::ng-deep .ant-avatar-string {
+    font-size: 32px !important;
+    line-height: 60px !important;
+
+  }
+}
+
+.info-section {
+  margin-bottom: 10px;
+
+
+  h3 {
+    font-size: 12px;
+    margin: 4px 0;
+    color: #1890ff;
+    position: relative;
+    padding-left: 12px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 10px;
+      background: #1890ff;
+      border-radius: 2px;
+    }
+  }
+}
+
+.info-list {
+  font-size: 10px;
+  background: white;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.info-item {
+  margin: 6px 0;
+  padding: 4px 0;
+  border-bottom: 1px solid #f0f0f0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  span {
+    font-weight: 400;
+    color: #1890ff;
+    margin-right: 8px;
+  }
+}
+
+button {
+  margin: 8px;
+  width: calc(100% - 32px);
+}

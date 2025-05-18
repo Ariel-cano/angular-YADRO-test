@@ -8,7 +8,4 @@ export const routes: Routes = [
   {path: 'users', component: UsersListComponent},
   {path: 'users/new', component: UserFormComponent},
   {path: 'users/:id/edit', component: UserFormComponent},
-  {path: 'users/:id', component: UserDetailsComponent},
-
-
-];
+  {path: 'users/:id', component: UserDetailsComponent}];
