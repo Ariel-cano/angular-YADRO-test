@@ -8,6 +8,7 @@ import {NzColDirective, NzRowDirective} from 'ng-zorro-antd/grid';
 import {NgIf} from '@angular/common';
 import {IUser} from '../../model/user.model';
 import {ActivatedRoute, Router} from '@angular/router';
+import {NzIconDirective} from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-user-form',
@@ -20,7 +21,8 @@ import {ActivatedRoute, Router} from '@angular/router';
     NzButtonComponent,
     NzRowDirective,
     NzColDirective,
-    NgIf
+    NgIf,
+    NzIconDirective
   ],
   templateUrl: './user-form.component.html',
   standalone: true,
@@ -161,6 +163,10 @@ export class UserFormComponent implements OnInit{
         alert('Failed to create user. Try again later.');
       }
     });
+  }
+
+  back(): void {
+    this.router.navigate(['/users'])
   }
 
 
