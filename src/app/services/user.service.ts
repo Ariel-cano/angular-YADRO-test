@@ -27,7 +27,7 @@ export class UserService {
     return this.http.put<IUser>(`${environment.API_URL}/${id}`, user);
   }
 
-  deleteUser(id: number): Observable<IUser> {
-    return this.http.delete<IUser>(`${environment.API_URL}/${id}`);
+  deleteUser(id: number): Observable<unknown> {
+    return this.http.delete<unknown>(`${environment.API_URL}/${id}`);
   }
 }
