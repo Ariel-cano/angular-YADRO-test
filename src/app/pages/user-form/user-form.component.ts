@@ -22,7 +22,6 @@ import {NzIconDirective} from 'ng-zorro-antd/icon';
     NzRowDirective,
     NzColDirective,
     NgIf,
-    NzIconDirective
   ],
   templateUrl: './user-form.component.html',
   standalone: true,
