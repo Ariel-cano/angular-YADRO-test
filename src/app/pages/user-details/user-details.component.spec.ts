@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import { UserDetailsComponent } from './user-details.component';
 import {UserService} from '../../services/user.service';
 import {provideRouter, Router} from '@angular/router';
-import {Observable, of} from 'rxjs';
+import {of} from 'rxjs';
 import {IUser} from '../../model/user.model';
 import {ActivatedRoute} from '@angular/router';
 

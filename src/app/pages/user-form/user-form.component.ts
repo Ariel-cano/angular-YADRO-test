@@ -8,7 +8,6 @@ import {NzColDirective, NzRowDirective} from 'ng-zorro-antd/grid';
 import {NgIf} from '@angular/common';
 import {IUser} from '../../model/user.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NzIconDirective} from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-user-form',
