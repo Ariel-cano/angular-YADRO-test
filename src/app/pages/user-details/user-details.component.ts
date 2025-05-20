@@ -28,6 +28,10 @@ export class UserDetailsComponent implements OnInit {
   user: IUser | null = null;
 
   ngOnInit(): void {
+    this.loadUserDetails();
+  };
+
+  loadUserDetails(): void {
     const userId = Number(this.route.snapshot.paramMap.get('id'));
     if (userId) {
       this.userSrc.getUserDetailsById(userId).subscribe({
@@ -40,7 +44,10 @@ export class UserDetailsComponent implements OnInit {
       });
     }
   }
+
   back(): void {
     this.router.navigate(['/users'])
-  }
+  };
+
+
 }
