@@ -14,16 +14,18 @@
     <nz-card
       *ngFor="let user of getCurrentPageUsers()"
       class="user-card"
-      [nzTitle]="user.name" >
+      [nzTitle]="user.name">
       <div class="button-container">
-        <div>
-          <p class="user-email">{{ user.email }}</p>
+          <div>
+            <p class="user-email">{{ user.email }}</p>
+          </div>
+          <div>
+            <button class="button" nz-button (click)="onEdit(user)" >Edit</button>
+            <button class="button" nz-button (click)="onDelete(user.id)" >Delete</button>
+          </div>
         </div>
-        <div>
-          <button class="button" nz-button (click)="onEdit(user)" >Edit</button>
-          <button class="button" nz-button (click)="onDelete(user.id)" >Delete</button>
-          <button class="button" nz-button (click)="goToUserDetails(user.id)" >Details</button>
-        </div>
+      <div>
+        <button class="big-button" nz-button (click)="goToUserDetails(user.id)" >Details</button>
       </div>
     </nz-card>
   </div>
